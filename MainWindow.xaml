@@ -5,45 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ellie"
         mc:Ignorable="d"
-        Title="Ellie" Height="450" Width="800" MinHeight="400" MinWidth="550"
+        Title="Ellie" Height="500" Width="800" MinHeight="500" MinWidth="550"
         Icon="./assets/logo.png"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Menu>
             <MenuItem Header="_File">
                 <MenuItem Header="Open _Folder" Click="OpenFolderDialog" >
-					<MenuItem.Icon>
-						<Image Source="./assets/open_30px.png"/>
-					</MenuItem.Icon>
-				</MenuItem>
+                    <MenuItem.Icon>
+                        <Image Source="./assets/open_folder.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="E_xit" Click="Exit">
-					<MenuItem.Icon>
-						<Image Source="./assets/exit_30px.png"/>
-					</MenuItem.Icon>
-				</MenuItem>
+                    <MenuItem.Icon>
+                        <Image Source="./assets/exit1.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Edit" Name="editMenuItem" Visibility="Hidden">
+                <MenuItem Header="Copy Url" Click="copy_uri_clipboard">
+                    <MenuItem.Icon>
+                        <Image Source=".\assets\copy.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_View" Name="viewMenuItem" Visibility="Hidden">
+                <MenuItem Header="Previous" Click="ViewPreviousImage">
+                    <MenuItem.Icon>
+                        <Image Source=".\assets\previous.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Next" Click="ViewNextImage">
+                    <MenuItem.Icon>
+                        <Image Source=".\assets\next.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
 
         </Menu>
-        <Grid Name="imageViewGrid" Visibility="Hidden">
+
+
+        <Grid Name="welcomeGrid" >
+            <Grid Margin="30" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button ToolTip="Open Folder to view your gallery" Height="60" Width="75" Background="Transparent" BorderBrush="Transparent" Cursor="Hand" Click="OpenFolderDialog">
+                    <Image  Source="./assets/open_folder_100px.png"/>
+                </Button>
+
+            </Grid>
+            <Image Source="./assets/girl.png" Stretch="Uniform" Grid.Column="1"/>
+            <TextBlock FontSize="40" HorizontalAlignment="Left" Foreground="RosyBrown" Margin="124,39,0,-39" Width="449" >
+                Open Folder
+            </TextBlock>
+        </Grid>
+
+        <Grid Visibility="Hidden" Name="imageViewGrid" Margin="0,20,0,0" >
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="500"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="10"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="22"></RowDefinition>
+                <RowDefinition Height="44"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Image Name="picHolder" Grid.Column="1" Grid.Row="1" Stretch="Uniform"/>
 
-            <Button Name="btnBack" Click="ViewPreviousImage" Grid.Column="1" Width="50" HorizontalAlignment="Left" Grid.Row="2" Height="30">Back</Button>
-            <Button Name="btnNext" Click="ViewNextImage" Grid.Column="1" Width="50" HorizontalAlignment="Right" Grid.Row="2" Height="30">Next</Button>
+            <ToolBarTray Grid.Column="1" Background="Transparent">
+                <ToolBar Band="1" BandIndex="1" Background="Transparent">
+                    <Button Click="OpenFolderDialog" ToolTip="Open Folder Containing Images" Cursor="Hand">
+                        <Image Source="assets\open_folder.png"/>
+                    </Button>
+                    <Button Click="Exit" ToolTip="Exit Ellie" Cursor="Hand">
+                        <Image Source="assets\exit1.png"/>
+                    </Button>
+                    <Button Click="copy_uri_clipboard" ToolTip="Copy Image Path" Cursor="Hand">
+                        <Image  Source="assets\copy.png" Height="30"/>
+                    </Button>
+                    <Button Click="ViewPreviousImage" ToolTip="View Previous Image" Cursor="Hand">
+                        <Image  Source="assets\previous.png" Height="30"/>
+                    </Button>
+                    <Button Click="ViewNextImage" ToolTip="View Next Image" Cursor="Hand">
+                        <Image  Source="assets\next.png" Height="30"/>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
         </Grid>
-        
-        
     </Grid>
 </Window>

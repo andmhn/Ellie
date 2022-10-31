@@ -20,8 +20,9 @@ namespace Ellie
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<string> ImagePaths = new List<string>();
         int index = 0;
+        string CurrentImagePath = new string("");
+        List<string> ImagePaths = new List<string>();
 
         public MainWindow()
         {
@@ -35,26 +36,36 @@ namespace Ellie
 
         private void ViewNextImage(object sender, RoutedEventArgs e)
         {
+            NextImage();
+        }
+
+        private void NextImage()
+        {
             index++;
             if (index >= ImagePaths.Count)
             {
                 index = 0;
             }
-            string imagePath = ImagePaths[index];
-            picHolder.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
-            UpdateTitle(imagePath);
+            CurrentImagePath = ImagePaths[index];
+            picHolder.Source = new BitmapImage(new Uri(CurrentImagePath, UriKind.Absolute));
+            UpdateTitle(CurrentImagePath);
         }
 
         private void ViewPreviousImage(object sender, RoutedEventArgs e)
+        {
+            PreviousImage();
+        }
+
+        private void PreviousImage()
         {
             index--;
             if (index < 0)
             {
                 index = ImagePaths.Count - 1;
             }
-            string imagePath = ImagePaths[index];
-            picHolder.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
-            UpdateTitle(imagePath);
+            CurrentImagePath = ImagePaths[index];
+            picHolder.Source = new BitmapImage(new Uri(CurrentImagePath, UriKind.Absolute));
+            UpdateTitle(CurrentImagePath);
         }
 
 
@@ -85,11 +96,17 @@ namespace Ellie
                 string imagePath = ImagePaths[index];	// current Image
 				// set new Image source
                 picHolder.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
+
+                welcomeGrid.Visibility = Visibility.Hidden;
+                editMenuItem.Visibility = Visibility.Visible;
+                viewMenuItem.Visibility = Visibility.Visible;
                 imageViewGrid.Visibility = Visibility.Visible;
                 UpdateTitle(imagePath);
             }
             else
             {
+				editMenuItem.Visibility = Visibility.Hidden;
+                viewMenuItem.Visibility = Visibility.Hidden;
                 imageViewGrid.Visibility = Visibility.Hidden;
                 ResetTitle();
             }
@@ -104,5 +121,11 @@ namespace Ellie
         {
             this.Title = "Ellie";
         }
+
+        private void copy_uri_clipboard(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(CurrentImagePath);
+        }
+
     }
 }
