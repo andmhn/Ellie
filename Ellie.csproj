@@ -5,15 +5,16 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-	<UseWindowsForms>true</UseWindowsForms>
-	<ApplicationIcon>assets\Ellie.ico</ApplicationIcon>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>assets\Ellie.ico</ApplicationIcon>
+
+    <Version>1.0.0</Version>
+    <Authors>Anand Mohan</Authors>
+    <RepositoryUrl>https://github.com/andmhn/Ellie</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <Resource Include="./assets/*" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="assets\Ellie.ico" />
-  </ItemGroup>
 </Project>
