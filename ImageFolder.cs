@@ -29,7 +29,7 @@ namespace Ellie
                     if(path.EndsWith(extention))
                     {
                         ImagePaths.Add(path);
-						log.WriteLine(path);
+			log.WriteLine(path);
                     }
                 }
             }
