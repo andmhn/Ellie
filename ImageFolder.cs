@@ -19,9 +19,8 @@ namespace Ellie
             var paths = System.IO.Directory.GetFiles(FolderPath);
 
             string[] extentions = { "jpg", "png", "bmp", "ico" };
-			
-			//log
-			var log = System.IO.File.AppendText("debug.log");
+
+	    var log = System.IO.File.AppendText("debug.log");
             foreach(string path in paths)
             {
                 foreach(string extention in extentions)
